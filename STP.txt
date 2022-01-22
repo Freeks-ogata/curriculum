@@ -1,0 +1,37 @@
+第2章STP　課題
+
+
+問1　ルートブリッジに該当するSwitchの番号
+     3
+　　　理由：ブリッジプライオリティの数字が一番小さく、優先度が高いため
+
+
+
+問2　全てのポートの役割
+
+　　　・Switch1  F0/1　DP⇨❸
+　　　　　　　 　 F0/2　RP⇨❶
+　　　・Switch2  F0/1　RP⇨❶
+　　　　　　　 　 F0/2　BP⇨❹
+　　　・Switch3  E0/1　DP⇨❷
+　　　　　　　 　 E0/2　DP⇨❷
+　　　・Switch4  E0/1　DP⇨❹
+　　　　　　　 　 E0/2　RP⇨❶
+
+
+　　　ルートポートの選出
+　　　・Switch1⇨Switch3
+　　　　ルート①  Switch1⇨Switch3　　ショートパスコスト：100　　ルートパスコスト：100
+　　　　　　　②  Switch1⇨Switch2⇨Switch4⇨Switch3　　ショートパスコスト：19＋100＋100　　ルートパスコスト：219
+　　　・Switch2⇨Switch3
+　　　　ルート①  Switch2⇨Switch1⇨Switch3　　ショートパスコスト：19＋100　　ルートパスコスト：119
+　　　　　　　②  Switch2⇨Switch4⇨Switch3　　ショートパスコスト：100＋100　　ルートパスコスト：200
+　　　・Switch4⇨Switch3
+　　　　ルート①  Switch4⇨Switch3　　ショートパスコスト：100　　ルートパスコスト：100
+　　　　　　　②  Switch4⇨Switch2⇨Switch1⇨Switch3　　ショートパスコスト：100＋19＋100　　ルートパスコスト：219
+
+
+　　　❶各SwitchのルートポートはSwitch1=F0/2、Switch2=F0/1、Switch4=E0/2
+　　　❷ルートブリッジの全てのポートは必ず指定ポートになるためSwitch３のE0/1、E0/2は指定ポートになる
+　　　❸ルートポートの向かいのポートは必ず指定ポートになるため
+　　　❹ブリッジID Switch2＞Switch4のためSwitch4E0/1が指定ポートになる。よってSwitch2F0/2がブロッキングポートになる
